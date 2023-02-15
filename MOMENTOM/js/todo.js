@@ -16,10 +16,14 @@ function showTodos() {
 function handleToDelete(event) {
   const li = event.target.parentElement;
   li.remove();
-  console.log(event.target.parentNode);
+  toDos = toDos.filter(
+    (item) => parseInt(li.id) !== item.id //string으로 저장된 id Number 변환 필수
+  );
+  saveTodos();
 }
-function paintToDo(newTodo) {
+function paintToDo(newTodoObj) {
   const li = document.createElement("li");
+  li.id = newTodoObj.id;
   const span = document.createElement("span");
   const deleteBtn = document.createElement("button");
 
@@ -28,7 +32,7 @@ function paintToDo(newTodo) {
 
   li.appendChild(span);
   li.appendChild(deleteBtn);
-  span.innerText = newTodo;
+  span.innerText = newTodoObj.text;
   toDoList.appendChild(li);
 
   deleteBtn.addEventListener("click", handleToDelete);
@@ -38,8 +42,12 @@ function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value;
   toDoInput.value = "";
-  toDos.push(newTodo);
-  paintToDo(newTodo);
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(),
+  };
+  toDos.push(newTodoObj);
+  paintToDo(newTodoObj);
   saveTodos();
 }
 toDoForm.addEventListener("submit", handleToDoSubmit);
