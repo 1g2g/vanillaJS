@@ -10,9 +10,7 @@ $secondBtn.addEventListener("click", function () {
   alert("thanks for clicking me");
 });
 const btnList = [...document.getElementById("event").children];
-console.log(btnList);
 btnList.forEach((btn) => {
-  console.log(btn.value);
   btn.addEventListener("mouseleave", function () {
     btn.style.backgroundColor = "red";
   });
@@ -37,3 +35,17 @@ const setName = () => {
     FIRSTNAME === null ? "Hello,anonymous" : `Hello, ${FIRSTNAME}`;
 };
 setName();
+
+//이벤트 객체 공통 프로퍼티
+const $onTimeDiv = document.getElementById("checkTimeArea");
+const $onTimeCheck = document.querySelector(
+  "#checkTimeArea input[type=checkbox]"
+);
+const onTimeChild = [...$onTimeDiv.children];
+$onTimeCheck.onchange = (e) => {
+  e.target.classList.toggle("hidden");
+  e.target.previousSibling.innerText = "10시 출근했음";
+  // onTimeChild.forEach((child) => {
+  //   child.classList.toggle("hidden");
+  // });
+};
