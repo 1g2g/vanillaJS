@@ -52,3 +52,6 @@ function handleToDoSubmit(event) {
 }
 toDoForm.addEventListener("submit", handleToDoSubmit);
 showTodos();
+
+const $elems = document.getElementsByTagName("li");
+[...$elems].forEach((elem) => (elem.style.color = "red"));

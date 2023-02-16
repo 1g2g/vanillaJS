@@ -1,3 +1,6 @@
 .hidden {
   display: none;
 }
+/* #weather span::before {
+  content: "|";
+} */
