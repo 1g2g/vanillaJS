@@ -9,7 +9,7 @@ console.log($secondBtn);
 $secondBtn.addEventListener("click", function () {
   alert("thanks for clicking me");
 });
-const btnList = [...document.getElementById("event").children];
+const btnList = [...document.querySelector("#event>div").children];
 btnList.forEach((btn) => {
   btn.addEventListener("mouseleave", function () {
     btn.style.backgroundColor = "red";
@@ -49,3 +49,21 @@ $onTimeCheck.onchange = (e) => {
   //   child.classList.toggle("hidden");
   // });
 };
+
+//마우스 이벤트 : drag
+const $box = document.getElementById("dragBox");
+const initialPos = { x: 0, y: 0 };
+const offset = { x: 0, y: 0 };
+const moveBox = (e) => {
+  offset.x = e.clientX - initialPos.x;
+  offset.y = e.clientY - initialPos.y;
+  $box.style.transform = `translate3d(${offset.x}px,${offset.y}px,0)`;
+};
+$box.addEventListener("mousedown", (e) => {
+  initialPos.x = e.clientX - offset.x;
+  initialPos.y = e.clientY - offset.y;
+  document.addEventListener("mousemove", moveBox);
+});
+$box.addEventListener("mouseup", (e) => {
+  document.removeEventListener("mousemove", moveBox);
+});

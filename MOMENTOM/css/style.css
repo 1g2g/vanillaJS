@@ -1,6 +1,12 @@
 .hidden {
   display: none;
 }
+#dragBox {
+  width: 500px;
+  height: 300px;
+  background-image: url("https://biz.chosun.com/resizer/uFL4h5Me72stp71-CqZ-uoGVqew=/447x279/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosunbiz/7DMVR3RM2AUKNX4WYS7EDYNNMA.jpg");
+  background-size: cover;
+}
 /* #weather span::before {
   content: "|";
 } */
