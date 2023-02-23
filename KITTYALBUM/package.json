@@ -13,7 +13,8 @@
   "dependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.0",
-    "@babel/preset-env": "^7.20.2"
+    "@babel/preset-env": "^7.20.2",
+    "intersection-observer": "^0.12.2"
   },
   "devDependencies": {
     "babel-jest": "^29.4.3",

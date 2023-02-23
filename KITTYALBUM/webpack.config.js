@@ -31,4 +31,10 @@ module.exports = {
       template: "./index.html",
     }),
   ],
+  resolve: {
+    extensions: [".js", ".jsx", ".json", "css"],
+    alias: {
+      "@css": path.resolve(__dirname + "/src/css"),
+    },
+  },
 };
