@@ -27,14 +27,11 @@ export class Result {
     };
 
     // IntersectionObserver 생성
+    //스크롤 문제 발생지점
     const io = await new IntersectionObserver((entries, observer) => {
-      // IntersectionObserverEntry 객체 리스트와 observer 본인(self)를 받음
-      // 동작을 원하는 것 작성
       entries.forEach((entry) => {
-        // entry와 observer 출력
         if (entry.isIntersecting) {
           let cats = newApi().then((cats) => new Cards(this.$wrapper, cats));
-          // console.log(cats);
         }
       });
     }, options);
@@ -42,5 +39,4 @@ export class Result {
     console.log(document.querySelector(".wrapper").lastChild);
     io.observe(lastData);
   }
-  render() {}
 }
