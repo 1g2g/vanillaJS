@@ -1,7 +1,17 @@
+.searching-box {
+  text-align: center;
+}
+.searching-box input {
+  width: 60%;
+  height: 40px;
+  font-size: 24px;
+}
 .wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
 }
 .wrapper > .card > img {
   object-fit: cover;

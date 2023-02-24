@@ -16,27 +16,29 @@ export class Result {
     div.classList.add("wrapper");
     this.area.appendChild(div);
     this.$wrapper = document.querySelector(".wrapper");
-    new Cards(this.$wrapper, catList);
+    new Cards(this.$wrapper, catList, "first-load");
     this.scrollOver();
   }
-  async scrollOver() {
+  scrollOver() {
     const options = {
-      root: null, // .container class를 가진 엘리먼트를 root로 설정. null일 경우 브라우저 viewport
-      rootMargin: "10px", // rootMargin을 '10px 10px 10px 10px'로 설정
-      threshold: [0, 0.5, 1], // 타겟 엘리먼트가 교차영역에 진입했을 때, 교차영역에 타켓 엘리먼트의 50%가 있을 때, 교차 영역에 타켓 엘리먼트의 100%가 있을 때 observe가 반응한다.
+      root: null, //  null일 경우 브라우저 viewport
+      rootMargin: "10px",
+      threshold: [0, 0.5],
     };
 
     // IntersectionObserver 생성
-    //스크롤 문제 발생지점
-    const io = await new IntersectionObserver((entries, observer) => {
+    const io = new IntersectionObserver((entries, observer) => {
+      // IntersectionObserverEntry 객체 리스트와 observer 본인(self)를 받음
+      // 동작을 원하는 것 작성
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          let cats = newApi().then((cats) => new Cards(this.$wrapper, cats));
+          //지정한 영역에 출입하면
+          newApi().then((cats) => new Cards(this.$wrapper, cats, "new-load")); //새로운 고양이list를 불러와 렌더링
+          observer.observe(document.querySelector(".wrapper").lastChild); //wrapper 가장 마지막 요소를 observer로 지정
         }
       });
     }, options);
     const lastData = document.querySelector(".wrapper").lastChild;
-    console.log(document.querySelector(".wrapper").lastChild);
     io.observe(lastData);
   }
 }
